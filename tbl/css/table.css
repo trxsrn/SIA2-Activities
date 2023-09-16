@@ -1,0 +1,35 @@
+body {
+    background-color: #257464a9;
+}
+
+.table
+{
+    position: absolute;
+    top: 5%;
+    left: 20%;
+    width: 75%;
+}
+
+h1
+{
+    text-align: center;
+}
+
+table, th, td {
+    margin: 10px;
+    border: 2px solid black;
+}
+
+th, td
+{
+    padding: 10px;
+}
+
+table{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+h1 {
+    font-family: 'Courier New', Courier, monospace;
+}
