@@ -32,8 +32,8 @@ include_once 'navbar.php';
                         while ($row = $sql1->fetch_assoc()) {
                             echo '
                                 <tr>
-                                    <td>' . $row['mealid FK'] . '</td>
-                                    <td>' . $row['itemid FK'] . '</td>
+                                    <td>' . $row['mealid'] . '</td>
+                                    <td>' . $row['itemid'] . '</td>
                                     <td>' . $row['quantity'] . '</td>
                                     <td>' . $row['discount'] . '</td>
                                 </tr>';
