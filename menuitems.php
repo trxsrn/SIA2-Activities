@@ -22,7 +22,7 @@
             <input type="text" name="name" placeholder="Name" required>
         </div>
         <div>
-            <input type="number" name="price" placeholder="Price" required>
+            <input type="text" name="price" placeholder="Price" required>
         </div>
         <div>
             <input type="submit" value="Submit" name="menuitem-submit">

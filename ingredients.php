@@ -23,7 +23,7 @@
             <input type="text" name="name" placeholder="Name" required>
         </div>
         <div>
-            <input type="number" name="unit" placeholder="Unit" required>
+            <input type="text" name="unit" placeholder="Unit" required>
         </div>
         <div>
             <input type="text" name="unitprice" placeholder="Unit Price" required>

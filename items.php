@@ -22,7 +22,7 @@
             <input type="text" name="name" placeholder="Name">
         </div>
         <div>
-            <input type="number" name="price" placeholder="Price">
+            <input type="text" name="price" placeholder="Price">
         </div>
         <div>
             <input type="date" name="date" placeholder="Date Added">

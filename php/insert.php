@@ -2,33 +2,31 @@
 include '../connection.php';
 
 if (isset($_POST['supplier-submit'])) {
-
     $supplier_id = $_POST['supplier_id'];
     $companyname = $_POST['companyname'];
     $repfname = $_POST['repfname'];
     $replname = $_POST['replname'];
     $referredby = $_POST['referredby'];
-        
-    $sql = "INSERT INTO suppliers (`supplierid`, `company_name`, `rep_fname`, `rep_lname`, `referred_by (FK)`) VALUES (?, ?, ?, ?, ?)";
-    $stmt = $conn->prepare($sql);
 
-    if ($stmt) {
-        $stmt->bind_param("issss", $supplier_id, $companyname, $repfname, $replname, $referredby);
-        
-        if ($stmt->execute()) {
-            echo '<script type="text/javascript">alert("Added Successfully");</script>';
-            header("Location:../index.php");
-        } else {
-            echo '<script type="text/javascript">alert("Error inserting data: ' . $stmt->error . '");</script>';
-        }
+            $insert_sql = "INSERT INTO suppliers (`supplierid`, `company_name`, `rep_fname`, `rep_lname`, `referred_by (FK)`) VALUES (?, ?, ?, ?, ?)";
+            $stmt = $conn->prepare($insert_sql);
 
-        $stmt->close();
-    } else {
-        echo '<script type="text/javascript">alert("Error preparing statement: ' . $conn->error . '");</script>';
-    }
+            if ($stmt) {
+                $stmt->bind_param("sssss", $supplier_id, $companyname, $repfname, $replname, $referredby);
+
+                if ($stmt->execute()) {
+                    echo '<script type="text/javascript">alert("Added Successfully");</script>';
+                    header("Location:../index.php");
+                } else {
+                    echo '<script type="text/javascript">alert("Error inserting data: ' . $stmt->error . '");</script>';
+                }
+
+                $stmt->close();
+            }
 
     $conn->close();
 }
+
 
 if (isset($_POST['ingredient-submit'])) {
 
@@ -44,7 +42,7 @@ if (isset($_POST['ingredient-submit'])) {
     $stmt = $conn->prepare($sql);
 
     if ($stmt) {
-        $stmt->bind_param("issssss", $id, $name, $unit, $price, $foodgroup, $inventory, $supplier);
+        $stmt->bind_param("sssssss", $id, $name, $unit, $price, $foodgroup, $inventory, $supplier);
         
         if ($stmt->execute()) {
             echo '<script type="text/javascript">alert("Added Successfully");</script>';
@@ -72,7 +70,7 @@ if (isset($_POST['items-submit'])) {
     $stmt = $conn->prepare($sql);
 
     if ($stmt) {
-        $stmt->bind_param("isss", $id, $name, $price, $date);
+        $stmt->bind_param("ssss", $id, $name, $price, $date);
         
         if ($stmt->execute()) {
             echo '<script type="text/javascript">alert("Added Successfully");</script>';
@@ -99,7 +97,7 @@ if (isset($_POST['madewith-submit'])) {
     $stmt = $conn->prepare($sql);
 
     if ($stmt) {
-        $stmt->bind_param("iss", $id, $name, $quantity);
+        $stmt->bind_param("sss", $id, $name, $quantity);
         
         if ($stmt->execute()) {
             echo '<script type="text/javascript">alert("Added Successfully");</script>';
@@ -126,7 +124,7 @@ if (isset($_POST['meal-submit'])) {
     $stmt = $conn->prepare($sql);
 
     if ($stmt) {
-        $stmt->bind_param("iss", $id, $name, $desc);
+        $stmt->bind_param("sss", $id, $name, $desc);
         
         if ($stmt->execute()) {
             echo '<script type="text/javascript">alert("Added Successfully");</script>';
@@ -154,7 +152,7 @@ if (isset($_POST['partof-submit'])) {
     $stmt = $conn->prepare($sql);
 
     if ($stmt) {
-        $stmt->bind_param("isss", $mealid, $itemid, $quantity, $discount);
+        $stmt->bind_param("ssss", $mealid, $itemid, $quantity, $discount);
         
         if ($stmt->execute()) {
             echo '<script type="text/javascript">alert("Added Successfully");</script>';
@@ -180,7 +178,7 @@ if (isset($_POST['menuitem-submit'])) {
     $stmt = $conn->prepare($sql);
 
     if ($stmt) {
-        $stmt->bind_param("iss", $menu, $name, $price);
+        $stmt->bind_param("sss", $menu, $name, $price);
         
         if ($stmt->execute()) {
             echo '<script type="text/javascript">alert("Added Successfully");</script>';
