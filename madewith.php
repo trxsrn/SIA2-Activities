@@ -16,10 +16,10 @@
     <h1> Made With</h1>
     <form action="php/insert.php" method="POST">
         <div>
-            <input type="text" name="supplier_id" placeholder="Item ID" required>
+            <input type="text" name="item_id" placeholder="Item ID" required>
         </div>
         <div>
-            <input type="text" name="companyname" placeholder="Ingredient ID" required>
+            <input type="text" name="ingredient_id" placeholder="Ingredient ID" required>
         </div>
         <div>
             <input type="number" name="quantity" placeholder="Quantity" required>

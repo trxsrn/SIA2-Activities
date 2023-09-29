@@ -1,6 +1,22 @@
 <?php
     $activePage = 'meals';
     include 'navbar.php';
+    include 'connection.php';
+
+    function getNextMealID($conn) {
+    $sql = "SELECT MAX(CAST(SUBSTRING(mealid, 2) AS UNSIGNED)) AS max_id FROM meals";
+    $result = $conn->query($sql);
+    
+        if ($result && $result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $next_id = $row['max_id'] + 1;
+            // Format the next ID with leading zeros if necessary (e.g., S0001)
+            return 'M' . sprintf('%04d', $next_id);
+        } else {
+            // If no records exist, start with S0001
+            return 'M0001';
+        }
+    }  
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +32,7 @@
     <h1> Meals</h1>
     <form action="php/insert.php" method="POST">
         <div>
-            <input type="text" name="mealid" placeholder="Meal ID" required>
+            <input type="text" name="mealid" placeholder="Meal ID" value="<?php echo getNextMealID($conn); ?>" readonly>
         </div>
         <div>
             <input type="text" name="name" placeholder="Name" required>

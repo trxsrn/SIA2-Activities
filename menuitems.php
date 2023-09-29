@@ -16,7 +16,7 @@
     <h1> Menu Items</h1>
     <form action="php/insert.php" method="POST">
         <div>
-            <input type="text" name="menuitemid" placeholder="Menu Item ID" required>
+            <input type="text" name="menuitemid" placeholder="Menu Item ID" >
         </div>
         <div>
             <input type="text" name="name" placeholder="Name" required>

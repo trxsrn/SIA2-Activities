@@ -1,6 +1,23 @@
 <?php
     $activePage = 'suppliers';
     include_once 'navbar.php';
+    include 'connection.php';
+
+    function getNextSupplierID($conn) {
+    $sql = "SELECT MAX(CAST(SUBSTRING(supplierid, 2) AS UNSIGNED)) AS max_id FROM suppliers";
+    $result = $conn->query($sql);
+    
+        if ($result && $result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $next_id = $row['max_id'] + 1;
+            // Format the next ID with leading zeros if necessary (e.g., S0001)
+            return 'S' . sprintf('%04d', $next_id);
+        } else {
+            // If no records exist, start with S0001
+            return 'S0001';
+        }
+    }      
+
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +38,7 @@
     <h1> Supplier</h1>
     <form action="php/insert.php" method="POST">
         <div>
-            <input type="text" name="supplier_id" placeholder="Supplier ID" required>
+            <input type="text" name="supplier_id" placeholder="Supplier ID" value="<?php echo getNextSupplierID($conn); ?>" readonly>
         </div>
         <div>
             <input type="text" name="companyname" placeholder="Company Name" required>
@@ -42,3 +59,4 @@
     </div>
     </body>
 </html>
+
